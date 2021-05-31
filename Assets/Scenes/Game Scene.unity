@@ -2636,7 +2636,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSteerAngle: 30
-  motorForce: 50000
+  motorForce: 10000
+  idleBreakTorque: 800000
   frontLeftWheelCol: {fileID: 490201855}
   frontRightWheelCol: {fileID: 27444860}
   backLeftWheelCol: {fileID: 316362037}

@@ -8,6 +8,7 @@ namespace UltimateCart {
         
         public float maxSteerAngle = 30;
         public float motorForce = 50;
+        public float idleBreakTorque = 50;
         public WheelCollider frontLeftWheelCol; 
         public WheelCollider frontRightWheelCol;
         public WheelCollider backLeftWheelCol; 
@@ -49,6 +50,14 @@ namespace UltimateCart {
         {
             frontLeftWheelCol.motorTorque = _verticalInput * motorForce;
             frontRightWheelCol.motorTorque = _verticalInput * motorForce;
+            if (_verticalInput == 0) {
+                frontLeftWheelCol.brakeTorque = idleBreakTorque;
+                frontRightWheelCol.brakeTorque = idleBreakTorque;
+            }
+            else {
+                frontLeftWheelCol.brakeTorque = 0;
+                frontRightWheelCol.brakeTorque = 0;
+            }
         }
 
         private void UpdateWheelPoses()
