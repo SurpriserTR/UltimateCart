@@ -11,17 +11,20 @@ namespace UltimateCart {
         [Header("Level Spesific")] 
         public float time = 20;
 
+        private TimeHud _timeHud;
         private Controls _controls;
         private GameState _gameState = GameState.Waiting;
         
         public void Awake() {
             _controls = FindObjectOfType<Controls>();
+            _timeHud = FindObjectOfType<TimeHud>();
             StartTheGame();
         }
 
         private void Update() {
             if (_gameState == GameState.Playing) {
                 time -= Time.deltaTime;
+                _timeHud.UpdateTimer(time);
                 if (time <= 0) {
                     FinishGame(false);
                 }
