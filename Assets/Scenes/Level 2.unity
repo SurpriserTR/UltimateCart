@@ -6406,6 +6406,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 765603332584977107, guid: 9b5a5b4cdebd6ab4f998ea49ac3b199f,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 4618325681395932772}
+    - target: {fileID: 765603333165489549, guid: 9b5a5b4cdebd6ab4f998ea49ac3b199f,
+        type: 3}
+      propertyPath: time
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b5a5b4cdebd6ab4f998ea49ac3b199f, type: 3}
 --- !u!23 &1468747806
@@ -25268,8 +25278,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4618325683016156226, guid: a10a61762fcbb2547aa8c180dd24e45e,
+        type: 3}
+      propertyPath: motorForce
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618325683016156226, guid: a10a61762fcbb2547aa8c180dd24e45e,
+        type: 3}
+      propertyPath: idleBreakTorque
+      value: 600
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a10a61762fcbb2547aa8c180dd24e45e, type: 3}
+--- !u!4 &4618325681395932772 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4843665322172302758, guid: a10a61762fcbb2547aa8c180dd24e45e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4618325681395932771}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4661435513947898578
 GameObject:
   m_ObjectHideFlags: 0
