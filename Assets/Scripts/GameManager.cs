@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 namespace UltimateCart {
     public class GameManager : MonoBehaviour {
+
+        public static int CurrentLevelIndex;
+        public static string levelIndexStr = "LevelIndex";
+        public static string levelScenesPrefix = "Level ";
+        
         public string winSceneName;
         public string gameOverSceneName;
+        public int levelIndex = 0;
 
         [Header("Level Spesific")] 
         public float time = 20;
@@ -16,6 +22,7 @@ namespace UltimateCart {
         private GameState _gameState = GameState.Waiting;
         
         public void Awake() {
+            CurrentLevelIndex = levelIndex;
             _controls = FindObjectOfType<Controls>();
             _timeHud = FindObjectOfType<TimeHud>();
             StartTheGame();
@@ -36,10 +43,15 @@ namespace UltimateCart {
             _gameState = GameState.Playing;
         }
 
-        private void FinishGame(bool success) {
+        public void FinishGame(bool success) {
             _controls.Enabled = false;
             _gameState = GameState.End;
-            if (success) SceneManager.LoadScene(winSceneName);
+            if (success) {
+                if (levelIndex + 1 > PlayerPrefs.GetInt(levelIndexStr, 1)) {
+                    PlayerPrefs.SetInt(levelIndexStr, levelIndex + 1);
+                }
+                SceneManager.LoadScene(winSceneName);
+            }
             else SceneManager.LoadScene(gameOverSceneName);
         }
 
