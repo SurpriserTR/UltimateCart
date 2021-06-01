@@ -11,8 +11,10 @@ public class TimeHud : MonoBehaviour {
         var sec = (int)remainingTime % 60;
         var str = "";
         if (min > 0) {
+            if (min < 10) str += 0;
             str += min + ":";
         }
+        if (sec < 10) str += 0;
         str += sec;
         text.text = str;
     }
