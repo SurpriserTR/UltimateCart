@@ -24,30 +24,39 @@ namespace UltimateCart {
         private float _horizontalInput;
         private float _verticalInput;
         private float _steeringAngle;
-        
-        private void FixedUpdate()
-        {
-            GetInput();
-            Steer();
-            Accelerate();
-            UpdateWheelPoses();
+        private GameManager _gameManager;
+
+        private void Awake() {
+            _gameManager = FindObjectOfType<GameManager>();
         }
 
-        private void GetInput()
-        {
+        private void CheckForFailureHit() {
+            CheckForFailureHit(frontLeftWheelCol);
+            CheckForFailureHit(frontRightWheelCol);
+            CheckForFailureHit(backLeftWheelCol);
+            CheckForFailureHit(backRightWheelCol);
+        }
+        
+        private void CheckForFailureHit(WheelCollider coll) {
+            if (coll.GetGroundHit(out WheelHit hit)) {
+                if (hit.collider.gameObject.CompareTag("Fail")) {
+                    _gameManager.FinishGame(false);
+                }
+            }
+        }
+
+        private void GetInput() {
             _horizontalInput = Input.GetAxis(HorizontalAxisName);
             _verticalInput = Input.GetAxis(VerticalAxisName);
         }
 
-        private void Steer()
-        {
+        private void Steer() {
             _steeringAngle = maxSteerAngle * _horizontalInput;
             frontLeftWheelCol.steerAngle = _steeringAngle;
             frontRightWheelCol.steerAngle = _steeringAngle;
         }
 
-        private void Accelerate()
-        {
+        private void Accelerate() {
             frontLeftWheelCol.motorTorque = _verticalInput * motorForce;
             frontRightWheelCol.motorTorque = _verticalInput * motorForce;
             if (_verticalInput == 0) {
@@ -60,8 +69,7 @@ namespace UltimateCart {
             }
         }
 
-        private void UpdateWheelPoses()
-        {
+        private void UpdateWheelPoses() {
             UpdateWheelPose(frontLeftWheelCol, frontLeftWheelVisual);
             UpdateWheelPose(frontRightWheelCol, frontRightWheelVisual);
             UpdateWheelPose(backLeftWheelCol, backLeftWheelVisual);
@@ -80,6 +88,15 @@ namespace UltimateCart {
         }
         
         public void Move(Vector2 dragDirection) {
+            CheckForFailureHit();
+            _horizontalInput = dragDirection.x;
+            _verticalInput = dragDirection.y;
+            if (dragDirection == Vector2.zero) {
+                GetInput();
+            }
+            Steer();
+            Accelerate();
+            UpdateWheelPoses();
         }
     }
 }

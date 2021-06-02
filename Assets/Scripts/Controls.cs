@@ -12,7 +12,6 @@ namespace UltimateCart {
         public string verticalParamName;
         public float animSpeed = 12;
         
-        public bool Enabled { get; set; }
         public IControllable Controllable { private get; set; }
 
         private const int c_nonPointer = -2973642;
@@ -60,7 +59,7 @@ namespace UltimateCart {
         }
 
         private void FixedUpdate() {
-            if (Enabled && Controllable != null) {
+            if (Controllable != null) {
                 Controllable.Move(_dragDirection);
             }
         }

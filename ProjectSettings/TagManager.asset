@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fail
+  - Car
   layers:
   - Default
   - TransparentFX
@@ -14,12 +16,12 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - Ground
-  - Environment
-  - Track
-  - CrashObject
-  - Kart
-  - TrainingCheckpoints
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

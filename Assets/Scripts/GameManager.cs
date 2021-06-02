@@ -39,12 +39,10 @@ namespace UltimateCart {
         }
 
         private void StartTheGame() {
-            _controls.Enabled = true;
             _gameState = GameState.Playing;
         }
 
         public void FinishGame(bool success) {
-            _controls.Enabled = false;
             _gameState = GameState.End;
             if (success) {
                 if (levelIndex + 1 > PlayerPrefs.GetInt(levelIndexStr, 1)) {
